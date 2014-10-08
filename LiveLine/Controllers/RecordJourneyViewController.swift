@@ -94,7 +94,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate {
                 let coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: self.managedObjectContext!) as Coordinate
                 coordinate.latitude = location.coordinate.latitude
                 coordinate.longitude = location.coordinate.longitude
-                coordinate.date = location.timestamp
+                coordinate.timestamp = location.timestamp
                 coordinate.journey = activeJourney
             }
         }

@@ -11,7 +11,7 @@ import CoreData
 
 class Journey: NSManagedObject {
 
-    @NSManaged var date: NSDate
+    @NSManaged var timestamp: NSDate
     @NSManaged var title: String
     @NSManaged var distance: NSNumber
     @NSManaged var photos: NSSet?

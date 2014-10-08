@@ -13,7 +13,7 @@ class Photo: NSManagedObject {
 
     @NSManaged var caption: String
     @NSManaged var image: NSData
-    @NSManaged var date: NSDate
+    @NSManaged var timestamp: NSDate
     @NSManaged var location: Coordinate
     @NSManaged var journey: Journey
 

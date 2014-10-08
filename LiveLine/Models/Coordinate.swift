@@ -13,7 +13,7 @@ class Coordinate: NSManagedObject {
 
     @NSManaged var latitude: NSNumber
     @NSManaged var longitude: NSNumber
-    @NSManaged var date: NSDate
+    @NSManaged var timestamp: NSDate
     @NSManaged var journey: Journey?
     @NSManaged var photo: Photo?
 
