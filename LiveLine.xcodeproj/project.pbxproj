@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5701BEC019E4EF52007CC1D3 /* PastJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEBF19E4EF52007CC1D3 /* PastJourneysViewController.swift */; };
 		5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */; };
+		5701BED619E5030B007CC1D3 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BED519E5030B007CC1D3 /* Journey.swift */; };
+		5701BED819E5030C007CC1D3 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BED719E5030C007CC1D3 /* Coordinate.swift */; };
+		5701BEDA19E5030C007CC1D3 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BED919E5030C007CC1D3 /* Photo.swift */; };
 		578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578F82F419CDB1AD0053CD4F /* MapKit.framework */; };
 		57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E619CD3BD000CAA130 /* AppDelegate.swift */; };
 		57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E819CD3BD000CAA130 /* LiveLine.xcdatamodeld */; };
@@ -31,6 +34,9 @@
 /* Begin PBXFileReference section */
 		5701BEBF19E4EF52007CC1D3 /* PastJourneysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastJourneysViewController.swift; sourceTree = "<group>"; };
 		5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJourneyViewController.swift; sourceTree = "<group>"; };
+		5701BED519E5030B007CC1D3 /* Journey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
+		5701BED719E5030C007CC1D3 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		5701BED919E5030C007CC1D3 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57D638E119CD3BD000CAA130 /* LiveLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D638E519CD3BD000CAA130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +78,16 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		5701BED419E502FC007CC1D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5701BED919E5030C007CC1D3 /* Photo.swift */,
+				5701BED719E5030C007CC1D3 /* Coordinate.swift */,
+				5701BED519E5030B007CC1D3 /* Journey.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		57D638D819CD3BD000CAA130 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +110,7 @@
 		57D638E319CD3BD000CAA130 /* LiveLine */ = {
 			isa = PBXGroup;
 			children = (
+				5701BED419E502FC007CC1D3 /* Models */,
 				5701BEBE19E4EF05007CC1D3 /* Controllers */,
 				57D638E619CD3BD000CAA130 /* AppDelegate.swift */,
 				57D638ED19CD3BD000CAA130 /* Main.storyboard */,
@@ -230,10 +247,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5701BEDA19E5030C007CC1D3 /* Photo.swift in Sources */,
 				57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */,
 				5701BEC019E4EF52007CC1D3 /* PastJourneysViewController.swift in Sources */,
 				5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */,
 				57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */,
+				5701BED619E5030B007CC1D3 /* Journey.swift in Sources */,
+				5701BED819E5030C007CC1D3 /* Coordinate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,9 +376,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = LiveLine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LiveLine/Models/LiveLine-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -366,9 +389,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = LiveLine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LiveLine/Models/LiveLine-Bridging-Header.h";
 			};
 			name = Release;
 		};
