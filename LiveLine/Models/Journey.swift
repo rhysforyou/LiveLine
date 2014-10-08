@@ -14,7 +14,7 @@ class Journey: NSManagedObject {
     @NSManaged var date: NSDate
     @NSManaged var title: String
     @NSManaged var distance: NSNumber
-    @NSManaged var photos: NSSet
-    @NSManaged var coordinates: NSSet
+    @NSManaged var photos: NSSet?
+    @NSManaged var coordinates: NSSet?
 
 }

@@ -13,4 +13,8 @@ class RecordJourneyViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
+    
+    @IBAction func beginRecording(sender: UIBarButtonItem) {
+        print("Recording");
+    }
 }

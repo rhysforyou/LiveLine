@@ -4,12 +4,14 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="journey" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Journey" inverseName="coordinates" inverseEntity="Journey" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="location" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Journey" representedClassName="Journey" syncable="YES">
         <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="distance" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <relationship name="coordinates" toMany="YES" deletionRule="Cascade" destinationEntity="Coordinate" syncable="YES"/>
+        <relationship name="coordinates" toMany="YES" deletionRule="Cascade" destinationEntity="Coordinate" inverseName="journey" inverseEntity="Coordinate" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="journey" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
@@ -17,11 +19,11 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="journey" maxCount="1" deletionRule="Nullify" destinationEntity="Journey" inverseName="photos" inverseEntity="Journey" syncable="YES"/>
-        <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="Coordinate" syncable="YES"/>
+        <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="Coordinate" inverseName="photo" inverseEntity="Coordinate" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Coordinate" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="Photo" positionX="-54" positionY="9" width="128" height="118"/>
+        <element name="Coordinate" positionX="-531" positionY="45" width="128" height="118"/>
+        <element name="Photo" positionX="-290" positionY="234" width="128" height="118"/>
         <element name="Journey" positionX="-45" positionY="45" width="128" height="118"/>
     </elements>
 </model>

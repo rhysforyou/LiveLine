@@ -57,7 +57,11 @@
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Xi7-cy-PJz"/>
                         <barButtonItem image="settings_icon" id="Cc7-FF-N3c"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="J7h-l0-B5F"/>
-                        <barButtonItem image="record_icon" id="DMH-CW-dLi"/>
+                        <barButtonItem image="record_icon" id="DMH-CW-dLi">
+                            <connections>
+                                <action selector="beginRecording:" destination="vXZ-lx-hvc" id="nU8-E0-BYz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Brp-fh-aZ9"/>
                         <barButtonItem image="history_icon" id="qae-Wp-FC7">
                             <connections>
