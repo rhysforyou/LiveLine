@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5701BEC019E4EF52007CC1D3 /* PastJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEBF19E4EF52007CC1D3 /* PastJourneysViewController.swift */; };
+		5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */; };
+		578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578F82F419CDB1AD0053CD4F /* MapKit.framework */; };
 		57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E619CD3BD000CAA130 /* AppDelegate.swift */; };
 		57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E819CD3BD000CAA130 /* LiveLine.xcdatamodeld */; };
-		57D638EC19CD3BD000CAA130 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638EB19CD3BD000CAA130 /* ViewController.swift */; };
 		57D638EF19CD3BD000CAA130 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57D638ED19CD3BD000CAA130 /* Main.storyboard */; };
 		57D638F119CD3BD000CAA130 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D638F019CD3BD000CAA130 /* Images.xcassets */; };
 		57D638F419CD3BD000CAA130 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57D638F219CD3BD000CAA130 /* LaunchScreen.xib */; };
@@ -27,11 +29,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5701BEBF19E4EF52007CC1D3 /* PastJourneysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastJourneysViewController.swift; sourceTree = "<group>"; };
+		5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJourneyViewController.swift; sourceTree = "<group>"; };
+		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57D638E119CD3BD000CAA130 /* LiveLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D638E519CD3BD000CAA130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57D638E619CD3BD000CAA130 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57D638E919CD3BD000CAA130 /* LiveLine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LiveLine.xcdatamodel; sourceTree = "<group>"; };
-		57D638EB19CD3BD000CAA130 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57D638EE19CD3BD000CAA130 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57D638F019CD3BD000CAA130 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		57D638F319CD3BD000CAA130 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,9 +63,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5701BEBE19E4EF05007CC1D3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5701BEBF19E4EF52007CC1D3 /* PastJourneysViewController.swift */,
+				5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		57D638D819CD3BD000CAA130 = {
 			isa = PBXGroup;
 			children = (
+				578F82F419CDB1AD0053CD4F /* MapKit.framework */,
 				57D638E319CD3BD000CAA130 /* LiveLine */,
 				57D638FC19CD3BD000CAA130 /* LiveLineTests */,
 				57D638E219CD3BD000CAA130 /* Products */,
@@ -79,8 +94,8 @@
 		57D638E319CD3BD000CAA130 /* LiveLine */ = {
 			isa = PBXGroup;
 			children = (
+				5701BEBE19E4EF05007CC1D3 /* Controllers */,
 				57D638E619CD3BD000CAA130 /* AppDelegate.swift */,
-				57D638EB19CD3BD000CAA130 /* ViewController.swift */,
 				57D638ED19CD3BD000CAA130 /* Main.storyboard */,
 				57D638F019CD3BD000CAA130 /* Images.xcassets */,
 				57D638F219CD3BD000CAA130 /* LaunchScreen.xib */,
@@ -215,8 +230,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57D638EC19CD3BD000CAA130 /* ViewController.swift in Sources */,
 				57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */,
+				5701BEC019E4EF52007CC1D3 /* PastJourneysViewController.swift in Sources */,
+				5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */,
 				57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +425,7 @@
 				57D6390519CD3BD000CAA130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		57D6390619CD3BD000CAA130 /* Build configuration list for PBXNativeTarget "LiveLineTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +434,7 @@
 				57D6390819CD3BD000CAA130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
