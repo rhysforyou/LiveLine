@@ -8,15 +8,25 @@
 
 import UIKit
 import CoreData
+import MapKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var locationManager: CLLocationManager!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+        if let navigationController = window?.rootViewController? as? UINavigationController {
+            if let recordJourneyController = navigationController.topViewController as? RecordJourneyViewController {
+                recordJourneyController.locationManager = locationManager
+            }
+        }
+        
         return true
     }
 
