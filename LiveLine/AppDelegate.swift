@@ -11,21 +11,14 @@ import CoreData
 import MapKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var locationManager: CLLocationManager!
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        
-        if let navigationController = window?.rootViewController? as? UINavigationController {
-            if let recordJourneyController = navigationController.topViewController as? RecordJourneyViewController {
-                recordJourneyController.locationManager = locationManager
-            }
-        }
+        let navigationController = self.window!.rootViewController as UINavigationController
+        let controller = navigationController.topViewController as RecordJourneyViewController
+        controller.managedObjectContext = self.managedObjectContext
         
         return true
     }

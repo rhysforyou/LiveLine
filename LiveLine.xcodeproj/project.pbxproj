@@ -12,6 +12,7 @@
 		5701BEDD19E504BC007CC1D3 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEDC19E504BC007CC1D3 /* Photo.swift */; };
 		5701BEDF19E504BC007CC1D3 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEDE19E504BC007CC1D3 /* Journey.swift */; };
 		5701BEE119E504BC007CC1D3 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEE019E504BC007CC1D3 /* Coordinate.swift */; };
+		5701BEE319E54A9F007CC1D3 /* Uni-walk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5701BEE219E54A9F007CC1D3 /* Uni-walk.gpx */; };
 		578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578F82F419CDB1AD0053CD4F /* MapKit.framework */; };
 		57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E619CD3BD000CAA130 /* AppDelegate.swift */; };
 		57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E819CD3BD000CAA130 /* LiveLine.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		5701BEDC19E504BC007CC1D3 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		5701BEDE19E504BC007CC1D3 /* Journey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		5701BEE019E504BC007CC1D3 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		5701BEE219E54A9F007CC1D3 /* Uni-walk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Uni-walk.gpx"; path = "../../../Downloads/CSCI342 Ass2 - Sample GPX and Images/Uni-walk.gpx"; sourceTree = "<group>"; };
 		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57D638E119CD3BD000CAA130 /* LiveLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D638E519CD3BD000CAA130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		57D638D819CD3BD000CAA130 = {
 			isa = PBXGroup;
 			children = (
+				5701BEE219E54A9F007CC1D3 /* Uni-walk.gpx */,
 				578F82F419CDB1AD0053CD4F /* MapKit.framework */,
 				57D638E319CD3BD000CAA130 /* LiveLine */,
 				57D638FC19CD3BD000CAA130 /* LiveLineTests */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57D638EF19CD3BD000CAA130 /* Main.storyboard in Resources */,
+				5701BEE319E54A9F007CC1D3 /* Uni-walk.gpx in Resources */,
 				57D638F419CD3BD000CAA130 /* LaunchScreen.xib in Resources */,
 				57D638F119CD3BD000CAA130 /* Images.xcassets in Resources */,
 			);

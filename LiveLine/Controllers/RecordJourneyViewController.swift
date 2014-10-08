@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import CoreData
 import MapKit
 
-class RecordJourneyViewController: UIViewController {
-    var locationManager: CLLocationManager?
+class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate {
+
+    var locationManager: CLLocationManager = CLLocationManager()
+    var recording: Bool = false
+    var activeJourney: Journey? = nil
+    
+    // Core Data
+    var managedObjectContext: NSManagedObjectContext? = nil
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var recordingIndicator: UIImageView!
@@ -26,15 +33,13 @@ class RecordJourneyViewController: UIViewController {
         case .Denied, .Restricted:
             displayDialog("Location Monitoring Disabled", message: "LiveLine needs location services to work. Please quit the app and enable them in System Settings → Privacy → Location Services → LiveLine.")
         case .NotDetermined:
-            locationManager?.requestAlwaysAuthorization()
+            locationManager.requestAlwaysAuthorization()
             checkLocationPermissions()
         case .Authorized:
-            print("Location monitoring enabled always")
-            locationManager?.startUpdatingLocation()
-            mapView.showsUserLocation = true
-            mapView.userTrackingMode = .Follow
+            println("Location monitoring enabled always")
+
         case .AuthorizedWhenInUse:
-            print("Location monitoring enabled while in-use")
+            println("Location monitoring enabled while in-use")
         }
     }
     
@@ -53,7 +58,49 @@ class RecordJourneyViewController: UIViewController {
         return .Default
     }
     
-    @IBAction func beginRecording(sender: UIBarButtonItem) {
-        print("Recording");
+    func startLocationMonitoring() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 20
+        locationManager.startUpdatingLocation()
+    }
+    
+    func beginRecording() {
+        if let context = self.managedObjectContext {
+            activeJourney = NSEntityDescription.insertNewObjectForEntityForName("Journey", inManagedObjectContext: context) as? Journey
+        }
+        
+        if (activeJourney != nil) {
+            recording = true
+        } else {
+            println("Unable to create a new Journey instance")
+        }
+    }
+    
+    @IBAction func toggleRecording(sender: UIBarButtonItem) {
+        if (!recording) {
+            startLocationMonitoring()
+            beginRecording()
+            mapView.showsUserLocation = true
+            mapView.userTrackingMode = .Follow
+        } else {
+            
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        for item in locations {
+            if let location = item as? CLLocation {
+                let coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: self.managedObjectContext!) as Coordinate
+                coordinate.latitude = location.coordinate.latitude
+                coordinate.longitude = location.coordinate.longitude
+                coordinate.date = location.timestamp
+                coordinate.journey = activeJourney
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Location updates failed: \(error)")
     }
 }

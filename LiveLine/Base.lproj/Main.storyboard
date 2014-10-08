@@ -59,7 +59,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="J7h-l0-B5F"/>
                         <barButtonItem image="record_icon" id="DMH-CW-dLi">
                             <connections>
-                                <action selector="beginRecording:" destination="vXZ-lx-hvc" id="nU8-E0-BYz"/>
+                                <action selector="toggleRecording:" destination="vXZ-lx-hvc" id="WtM-2j-BK5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Brp-fh-aZ9"/>

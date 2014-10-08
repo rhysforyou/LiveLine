@@ -24,6 +24,10 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>LiveLine will keep recording your journey in the background</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
