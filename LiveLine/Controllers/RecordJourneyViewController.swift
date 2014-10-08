@@ -10,11 +10,12 @@ import UIKit
 import CoreData
 import MapKit
 
-class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate {
+class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
-    var locationManager: CLLocationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     var recording: Bool = false
     var activeJourney: Journey? = nil
+    var polyline: MKPolyline? = nil
     
     // Core Data
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -75,6 +76,17 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             println("Unable to create a new Journey instance")
         }
+        
+        // Change the toolbar appearance
+        self.navigationController?.toolbar.barTintColor = UIColor.redColor()
+        self.navigationController?.toolbar.tintColor = UIColor.whiteColor()
+        self.toolbarItems = [
+            UIBarButtonItem(image: UIImage(named: "note_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("toggleRecording:")),
+            UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: Selector("")),
+            UIBarButtonItem(image: UIImage(named: "stop_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("toggleRecording:")),
+            UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: Selector("")),
+            UIBarButtonItem(image: UIImage(named: "camera_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("takePhoto:"))
+        ]
     }
     
     @IBAction func toggleRecording(sender: UIBarButtonItem) {
@@ -96,11 +108,37 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate {
                 coordinate.longitude = location.coordinate.longitude
                 coordinate.timestamp = location.timestamp
                 coordinate.journey = activeJourney
+                didAddCoordinate(coordinate)
             }
         }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Location updates failed: \(error)")
+    }
+    
+    func didAddCoordinate(coordinate: Coordinate) {
+        let coordinates = activeJourney?.coordinates.map() { (coordinate: Coordinate) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        }
+        if let polylinePoints = coordinates {
+            let oldPolyline = polyline
+            polyline = MKPolyline(coordinates: UnsafeMutablePointer<CLLocationCoordinate2D>(polylinePoints), count: polylinePoints.count)
+            self.mapView.addOverlay(polyline)
+            if (oldPolyline != nil) {
+                mapView.removeOverlay(oldPolyline)
+            }
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.strokeColor = UIColor.redColor()
+            renderer.lineWidth = 3.0
+            return renderer
+        } else {
+            return MKOverlayRenderer()
+        }
     }
 }

@@ -11,8 +11,8 @@
         <attribute name="distance" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" attributeType="Date" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <relationship name="coordinates" toMany="YES" deletionRule="Cascade" destinationEntity="Coordinate" inverseName="journey" inverseEntity="Coordinate" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="journey" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="coordinates" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Coordinate" inverseName="journey" inverseEntity="Coordinate" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Photo" inverseName="journey" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="LiveLine.Photo" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>

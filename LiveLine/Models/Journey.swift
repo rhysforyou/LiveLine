@@ -1,5 +1,5 @@
 //
-//  Journey.swift
+//  LiveLine.swift
 //  LiveLine
 //
 //  Created by Rhys Powell on 8/10/2014.
@@ -12,9 +12,9 @@ import CoreData
 class Journey: NSManagedObject {
 
     @NSManaged var timestamp: NSDate
-    @NSManaged var title: String
     @NSManaged var distance: NSNumber
-    @NSManaged var photos: NSSet?
-    @NSManaged var coordinates: NSSet?
+    @NSManaged var title: String
+    @NSManaged var coordinates: Array<Coordinate>
+    @NSManaged var photos: Array<Photo>
 
 }
