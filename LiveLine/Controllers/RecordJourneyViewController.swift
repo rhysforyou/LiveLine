@@ -28,6 +28,12 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     
     // MARK: - View Lifecycle
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        recordingIndicator.hidden = !recording
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -51,6 +57,14 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "showHistory") {
+            if let pastJourneysController = segue.destinationViewController as? PastJourneysViewController {
+                pastJourneysController.managedObjectContext = managedObjectContext
+            }
+        }
     }
     
     // MARK: -
@@ -89,7 +103,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     // MARK: - Map Updating
     
     func didAddCoordinate(coordinate: Coordinate) {
-        let coordinates = activeJourney?.coordinates.map() { (coordinate: Coordinate) -> CLLocationCoordinate2D in
+        let coordinates = activeJourney?.coordinatesArray.map() { (coordinate: Coordinate) -> CLLocationCoordinate2D in
             return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         }
         if let polylinePoints = coordinates {
@@ -119,15 +133,24 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         } else {
             activeJourney?.title = "Untitled"
             activeJourney?.timestamp = NSDate()
+            activeJourney?.sumDistances()
+            println(activeJourney?.distance)
+            
             var error: NSError? = nil
             if (managedObjectContext != nil && !managedObjectContext!.save(&error)) {
                 println("Error saving journey: \(error)")
             } else {
                 activeJourney = nil
             }
+            
             self.toolbarItems = oldToolbarItems
+            self.navigationController?.toolbar.barTintColor = UIColor.liveLineWhiteColor()
+            self.navigationController?.toolbar.tintColor = UIColor.liveLineRedColor()
+            
             recording = false
         }
+        
+        recordingIndicator.hidden = !recording
     }
     
     @IBAction func takePhoto(sender: UIBarButtonItem) {
@@ -195,7 +218,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             photo.image = image
             photo.timestamp = NSDate()
             photo.journey = activeJourney!
-            photo.location = activeJourney!.coordinates.last!
+            photo.location = activeJourney!.coordinates.lastObject as Coordinate
             
             didAddPhoto(photo)
         }

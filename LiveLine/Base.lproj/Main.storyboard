@@ -67,7 +67,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Brp-fh-aZ9"/>
                         <barButtonItem image="history_icon" id="qae-Wp-FC7">
                             <connections>
-                                <segue destination="Njo-Yg-N6o" kind="show" id="ysA-pI-WCm"/>
+                                <segue destination="Njo-Yg-N6o" kind="show" identifier="showHistory" id="ysA-pI-WCm"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -86,7 +86,7 @@
             <objects>
                 <tableViewController title="History" hidesBottomBarWhenPushed="YES" id="Njo-Yg-N6o" customClass="PastJourneysViewController" customModule="LiveLine" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BbI-ho-pKp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
