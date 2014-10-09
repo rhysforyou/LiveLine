@@ -10,12 +10,14 @@ import UIKit
 import CoreData
 import MapKit
 
-class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var locationManager = CLLocationManager()
     var recording: Bool = false
     var activeJourney: Journey? = nil
     var polyline: MKPolyline? = nil
+    
+    var oldToolbarItems: [AnyObject]?
     
     // Core Data
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -80,6 +82,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         // Change the toolbar appearance
         self.navigationController?.toolbar.barTintColor = UIColor.redColor()
         self.navigationController?.toolbar.tintColor = UIColor.whiteColor()
+        oldToolbarItems = self.toolbarItems
         self.toolbarItems = [
             UIBarButtonItem(image: UIImage(named: "note_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("toggleRecording:")),
             UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: Selector("")),
@@ -96,8 +99,30 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             mapView.showsUserLocation = true
             mapView.userTrackingMode = .Follow
         } else {
-            
+            activeJourney?.title = "Untitled"
+            activeJourney?.timestamp = NSDate()
+            var error: NSError? = nil
+            if (managedObjectContext != nil && !managedObjectContext!.save(&error)) {
+                println("Error saving journey: \(error)")
+            } else {
+                activeJourney = nil
+            }
+            self.toolbarItems = oldToolbarItems
+            recording = false
         }
+    }
+    
+    @IBAction func takePhoto(sender: UIBarButtonItem) {
+        if (UIImagePickerController.isSourceTypeAvailable(.Camera) == false) {
+            println("Camera unavailable")
+            return
+        }
+        
+        let cameraUI = UIImagePickerController()
+        cameraUI.sourceType = .Camera
+        cameraUI.delegate = self
+        cameraUI.allowsEditing = true
+        self.presentViewController(cameraUI, animated: true, completion: nil)
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -140,5 +165,11 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         } else {
             return MKOverlayRenderer()
         }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        println(image)
+        println(editingInfo)
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
 }
