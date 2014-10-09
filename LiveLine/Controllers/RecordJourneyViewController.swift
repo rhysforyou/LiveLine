@@ -177,8 +177,10 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let point = annotation as? MKPointAnnotation {
             return MKPinAnnotationView(annotation: annotation, reuseIdentifier: "PhotoPin")
+        } else if let userLocation = annotation as? MKUserLocation {
+            return nil
         } else {
-            return MKPinAnnotationView()
+            return nil
         }
     }
     
