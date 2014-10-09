@@ -74,8 +74,8 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         }
         
         // EXTRACT: Change the toolbar appearance
-        self.navigationController?.toolbar.barTintColor = UIColor.redColor()
-        self.navigationController?.toolbar.tintColor = UIColor.whiteColor()
+        self.navigationController?.toolbar.barTintColor = UIColor.liveLineRedColor()
+        self.navigationController?.toolbar.tintColor = UIColor.liveLineWhiteColor()
         oldToolbarItems = self.toolbarItems
         self.toolbarItems = [
             UIBarButtonItem(image: UIImage(named: "note_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("toggleRecording:")),
@@ -166,7 +166,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if let polyline = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: polyline)
-            renderer.strokeColor = UIColor.redColor()
+            renderer.strokeColor = UIColor.liveLineRedColor()
             renderer.lineWidth = 3.0
             return renderer
         } else {
