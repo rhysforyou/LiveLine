@@ -170,13 +170,15 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             renderer.lineWidth = 3.0
             return renderer
         } else {
-            return MKOverlayRenderer()
+            return nil
         }
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let point = annotation as? MKPointAnnotation {
-            return MKPinAnnotationView(annotation: annotation, reuseIdentifier: "PhotoPin")
+            let annotationView = MKAnnotationView(annotation: point, reuseIdentifier: "PhotoPin")
+            annotationView.image = UIImage(named: "photo_pin")
+            return annotationView
         } else if let userLocation = annotation as? MKUserLocation {
             return nil
         } else {
