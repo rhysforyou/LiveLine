@@ -8,13 +8,23 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class Photo: NSManagedObject {
 
     @NSManaged var caption: String
-    @NSManaged var image: NSData
-    @NSManaged var date: NSDate
+    @NSManaged var imageData: NSData
+    @NSManaged var timestamp: NSDate
     @NSManaged var location: Coordinate
     @NSManaged var journey: Journey
+    
+    var image: UIImage {
+        get {
+            return UIImage(data: imageData)
+        }
+        set(newImage) {
+            imageData = UIImagePNGRepresentation(newImage)
+        }
+    }
 
 }
