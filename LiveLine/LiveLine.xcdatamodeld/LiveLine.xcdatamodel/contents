@@ -16,7 +16,7 @@
     </entity>
     <entity name="Photo" representedClassName="LiveLine.Photo" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="image" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="imageData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="journey" maxCount="1" deletionRule="Nullify" destinationEntity="Journey" inverseName="photos" inverseEntity="Journey" syncable="YES"/>
         <relationship name="location" maxCount="1" deletionRule="Cascade" destinationEntity="Coordinate" inverseName="photo" inverseEntity="Coordinate" syncable="YES"/>

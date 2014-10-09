@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreLocation
 
 class Coordinate: NSManagedObject {
 
@@ -16,5 +17,10 @@ class Coordinate: NSManagedObject {
     @NSManaged var timestamp: NSDate
     @NSManaged var journey: Journey?
     @NSManaged var photo: Photo?
-
+    
+    var locationCoordinate2D: CLLocationCoordinate2D {
+        get {
+            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+    }
 }

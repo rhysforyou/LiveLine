@@ -22,8 +22,11 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     // Core Data
     var managedObjectContext: NSManagedObjectContext? = nil
     
+    // Subviews
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var recordingIndicator: UIImageView!
+    
+    // MARK: - View Lifecycle
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -46,20 +49,11 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         }
     }
     
-    func displayDialog(title: String?, message: String?, dismissable: Bool = true) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        
-        if (dismissable) {
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in })
-            alertController.addAction(defaultAction)
-        }
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
+    
+    // MARK: -
     
     func startLocationMonitoring() {
         locationManager.delegate = self
@@ -79,7 +73,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             println("Unable to create a new Journey instance")
         }
         
-        // Change the toolbar appearance
+        // EXTRACT: Change the toolbar appearance
         self.navigationController?.toolbar.barTintColor = UIColor.redColor()
         self.navigationController?.toolbar.tintColor = UIColor.whiteColor()
         oldToolbarItems = self.toolbarItems
@@ -91,6 +85,30 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             UIBarButtonItem(image: UIImage(named: "camera_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("takePhoto:"))
         ]
     }
+    
+    // MARK: - Map Updating
+    
+    func didAddCoordinate(coordinate: Coordinate) {
+        let coordinates = activeJourney?.coordinates.map() { (coordinate: Coordinate) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        }
+        if let polylinePoints = coordinates {
+            let oldPolyline = polyline
+            polyline = MKPolyline(coordinates: UnsafeMutablePointer<CLLocationCoordinate2D>(polylinePoints), count: polylinePoints.count)
+            self.mapView.addOverlay(polyline)
+            if (oldPolyline != nil) {
+                mapView.removeOverlay(oldPolyline)
+            }
+        }
+    }
+    
+    func didAddPhoto(photo: Photo) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = photo.location.locationCoordinate2D
+        mapView.addAnnotation(annotation)
+    }
+    
+    // MARK: - Interface Actions
     
     @IBAction func toggleRecording(sender: UIBarButtonItem) {
         if (!recording) {
@@ -121,9 +139,10 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         let cameraUI = UIImagePickerController()
         cameraUI.sourceType = .Camera
         cameraUI.delegate = self
-        cameraUI.allowsEditing = true
         self.presentViewController(cameraUI, animated: true, completion: nil)
     }
+    
+    // MARK: - Location Manager Delegate
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         for item in locations {
@@ -142,19 +161,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         println("Location updates failed: \(error)")
     }
     
-    func didAddCoordinate(coordinate: Coordinate) {
-        let coordinates = activeJourney?.coordinates.map() { (coordinate: Coordinate) -> CLLocationCoordinate2D in
-            return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        }
-        if let polylinePoints = coordinates {
-            let oldPolyline = polyline
-            polyline = MKPolyline(coordinates: UnsafeMutablePointer<CLLocationCoordinate2D>(polylinePoints), count: polylinePoints.count)
-            self.mapView.addOverlay(polyline)
-            if (oldPolyline != nil) {
-                mapView.removeOverlay(oldPolyline)
-            }
-        }
-    }
+    // MARK: - Map View Delegate
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if let polyline = overlay as? MKPolyline {
@@ -167,9 +174,42 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         }
     }
     
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if let point = annotation as? MKPointAnnotation {
+            return MKPinAnnotationView(annotation: annotation, reuseIdentifier: "PhotoPin")
+        } else {
+            return MKPinAnnotationView()
+        }
+    }
+    
+    // MARK: - Image Picker Delgate
+    
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        println(image)
-        println(editingInfo)
+        if (activeJourney != nil && managedObjectContext != nil && activeJourney!.coordinates.count > 0) {
+            let photo = NSEntityDescription.insertNewObjectForEntityForName("Photo", inManagedObjectContext: managedObjectContext!) as Photo
+            
+            photo.image = image
+            photo.timestamp = NSDate()
+            photo.journey = activeJourney!
+            photo.location = activeJourney!.coordinates.last!
+            
+            didAddPhoto(photo)
+        }
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - Utility
+    
+    func displayDialog(title: String?, message: String?, dismissable: Bool = true) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        if (dismissable) {
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in })
+            alertController.addAction(defaultAction)
+        }
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
 }
