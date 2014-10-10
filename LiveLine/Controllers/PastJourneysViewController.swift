@@ -55,8 +55,6 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         let journeyCell = cell as JourneyCell
         let journey = fetchedResultsController!.objectAtIndexPath(indexPath) as Journey
         
-        println(journey)
-        
         journeyCell.titleLabel.text = journey.title
         journeyCell.dateLabel.text = dateFormatter?.stringFromDate(journey.timestamp) ?? "No date"
         journeyCell.distanceLabel.text = "\(journey.distance / 1000.0) km"
@@ -92,8 +90,6 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
                 x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 60 + 10,
                 y: (((((coord.latitude - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 60 + 10
             )
-            
-            println("Adding point x: \(point.x) y: \(point.y)")
             
             if (firstPoint) {
                 path.moveToPoint(point)

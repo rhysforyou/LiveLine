@@ -135,7 +135,6 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             activeJourney?.title = "Untitled"
             activeJourney?.timestamp = NSDate()
             activeJourney?.sumDistances()
-            println(activeJourney?.distance)
             
             let titleInputAlert = UIAlertController(title: "Title", message: "Enter a title for the journey", preferredStyle: .Alert)
             titleInputAlert.addTextFieldWithConfigurationHandler() {
