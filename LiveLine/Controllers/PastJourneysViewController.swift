@@ -87,8 +87,8 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         var firstPoint = true
         for coord in journey.coordinatesArray {
             let point = CGPoint(
-                x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 60 + 10,
-                y: (((((coord.latitude - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 60 + 10
+                x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 64 + 10,
+                y: (((((coord.latitude - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 64 + 10
             )
             
             if (firstPoint) {
