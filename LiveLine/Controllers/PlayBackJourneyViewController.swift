@@ -23,8 +23,21 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     @IBOutlet weak var mapView: MKMapView!
     weak var pageController: UIPageViewController? = nil
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Slideshow", style: .Plain, target: self, action: Selector("showSlideshow:"))
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        transitionCoordinator()?.animateAlongsideTransition({ context in
+            self.navigationController?.navigationBar.barTintColor = UIColor.liveLineRedColor()
+            return
+        }, completion: nil)
+        
+        self.navigationController?.setToolbarHidden(true, animated: animated)
         
         addJourneyPathToMap()
         addPhotoMarkersToMap()
@@ -44,6 +57,10 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
                     let noContentView = storyboard?.instantiateViewControllerWithIdentifier("NoPhotoView") as UIViewController
                     pageController.setViewControllers([noContentView], direction: .Forward, animated: false, completion: nil)
                 }
+            }
+        } else if (segue.identifier == "showSlideshow") {
+            if let slideshowController = segue.destinationViewController as? SlideshowViewController {
+                slideshowController.photos = journey?.photosArray ?? []
             }
         }
     }
@@ -67,6 +84,10 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
         }
     }
 
+    @IBAction func showSlideshow(sender: AnyObject) {
+        self.performSegueWithIdentifier("showSlideshow", sender: self)
+    }
+    
     // MARK: - Page View Data Source
     
     func viewControllerForIndex(index: Int) -> UIViewController? {

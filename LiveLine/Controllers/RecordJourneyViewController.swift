@@ -31,6 +31,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationController?.toolbar.barStyle = UIBarStyle.Default
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         recordingIndicator.hidden = !recording
     }
