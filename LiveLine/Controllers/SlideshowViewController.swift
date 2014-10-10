@@ -17,6 +17,8 @@ class SlideshowViewController: UIViewController, KASlideShowDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Duration", style: .Plain, target: self, action: Selector("changeDuration:"))
+        
         slideshowView.delay = 3
         slideshowView.transitionDuration = 0.5
         slideshowView.transitionType = .Fade
@@ -63,5 +65,23 @@ class SlideshowViewController: UIViewController, KASlideShowDelegate {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
+    }
+    
+    @IBAction func changeDuration(sender: AnyObject) {
+        let actionSheet = UIAlertController(title: nil, message: "Set the duration each image shows for", preferredStyle: .ActionSheet)
+        actionSheet.addAction(UIAlertAction(title: "3 Seconds", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+            self.slideshowView.delay = 3
+        }))
+        actionSheet.addAction(UIAlertAction(title: "5 Seconds", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+            self.slideshowView.delay = 5
+        }))
+        actionSheet.addAction(UIAlertAction(title: "10 Seconds", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+            self.slideshowView.delay = 10
+        }))
+        actionSheet.addAction(UIAlertAction(title: "20 Seconds", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+            self.slideshowView.delay = 20
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        presentViewController(actionSheet, animated: true, completion: nil)
     }
 }
