@@ -40,6 +40,9 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
                 
                 if let startingController = viewControllerForIndex(0) {
                     pageController.setViewControllers([startingController], direction: .Forward, animated: false, completion: nil)
+                } else {
+                    let noContentView = storyboard?.instantiateViewControllerWithIdentifier("NoPhotoView") as UIViewController
+                    pageController.setViewControllers([noContentView], direction: .Forward, animated: false, completion: nil)
                 }
             }
         }
@@ -86,6 +89,8 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        if (journey?.photos.count == 0) { return nil }
+        
         let photoViewController = viewController as PhotoContentViewController
         let index = photoViewController.pageIndex
         
@@ -97,6 +102,8 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        if (journey?.photos.count == 0) { return nil }
+        
         let photoViewController = viewController as PhotoContentViewController
         let index = photoViewController.pageIndex
         

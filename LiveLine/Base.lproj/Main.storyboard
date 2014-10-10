@@ -246,6 +246,45 @@
             </objects>
             <point key="canvasLocation" x="4378" y="341"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="dfc-qZ-Y1D">
+            <objects>
+                <viewController storyboardIdentifier="NoPhotoView" id="1G7-HK-kTq" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Ku-Q9-T3U"/>
+                        <viewControllerLayoutGuide type="bottom" id="FaO-ez-SvF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M6g-ki-5Y9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_photos" translatesAutoresizingMaskIntoConstraints="NO" id="Wxm-tm-Fea">
+                                <rect key="frame" x="244" y="244" width="112" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="fz3-r5-5wW"/>
+                                    <constraint firstAttribute="width" constant="112" id="jey-DD-SKX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua7-hv-UZL">
+                                <rect key="frame" x="261" y="376" width="78.5" height="19.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.52156862745098043" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.92549019607843142" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Wxm-tm-Fea" secondAttribute="centerY" id="OkQ-vn-9Le"/>
+                            <constraint firstAttribute="centerX" secondItem="Wxm-tm-Fea" secondAttribute="centerX" id="Ol9-DG-g5G"/>
+                            <constraint firstItem="Ua7-hv-UZL" firstAttribute="top" secondItem="Wxm-tm-Fea" secondAttribute="bottom" constant="20" id="WRl-Hh-0by"/>
+                            <constraint firstItem="Ua7-hv-UZL" firstAttribute="centerX" secondItem="Wxm-tm-Fea" secondAttribute="centerX" id="diq-gk-eDz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7f0-Ii-Y3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4383" y="1021"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="RZD-Tt-ReW">
             <objects>
@@ -277,6 +316,7 @@
         <image name="history_icon" width="28" height="28"/>
         <image name="location_button_disabled" width="44" height="44"/>
         <image name="location_button_enabled" width="44" height="44"/>
+        <image name="no_photos" width="112" height="112"/>
         <image name="record_icon" width="22" height="22"/>
         <image name="recording_indicator" width="96" height="44"/>
         <image name="settings_icon" width="28" height="28"/>
