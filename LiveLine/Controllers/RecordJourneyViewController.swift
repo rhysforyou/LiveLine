@@ -95,11 +95,11 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         self.navigationController?.toolbar.tintColor = UIColor.liveLineWhiteColor()
         oldToolbarItems = self.toolbarItems
         self.toolbarItems = [
-            UIBarButtonItem(image: UIImage(named: "note_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("toggleRecording:")),
+            UIBarButtonItem(image: UIImage(named: "settings_icon"), landscapeImagePhone: UIImage(named: "settings_icon"), style: .Plain, target: self, action: Selector("showAbout:")),
             UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: Selector("")),
             UIBarButtonItem(image: UIImage(named: "stop_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("toggleRecording:")),
             UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: Selector("")),
-            UIBarButtonItem(image: UIImage(named: "camera_icon"), landscapeImagePhone: UIImage(named: "stop_icon"), style: .Plain, target: self, action: Selector("takePhoto:"))
+            UIBarButtonItem(image: UIImage(named: "camera_icon"), landscapeImagePhone: UIImage(named: "camera_icon"), style: .Plain, target: self, action: Selector("takePhoto:"))
         ]
     }
     
@@ -191,6 +191,14 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             userTrackingButton.setImage(UIImage(named: "location_button_enabled"), forState: .Normal)
             userTrackingButton.setImage(UIImage(named: "location_butto_disabledn"), forState: .Highlighted)
         }
+    }
+    
+    @IBAction func showAbout(sender: AnyObject) {
+        self.performSegueWithIdentifier("showAbout", sender: self)
+    }
+    
+    @IBAction func unwindFromAbout(segue: UIStoryboardSegue) {
+        
     }
     
     // MARK: - Location Manager Delegate
