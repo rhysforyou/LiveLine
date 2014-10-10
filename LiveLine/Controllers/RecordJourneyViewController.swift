@@ -25,6 +25,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     // Subviews
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var recordingIndicator: UIImageView!
+    @IBOutlet weak var userTrackingButton: UIButton!
     
     // MARK: - View Lifecycle
     
@@ -180,6 +181,18 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         presentViewController(cameraUI, animated: true, completion: nil)
     }
     
+    @IBAction func trackUser(sender: UIButton) {
+        if (mapView.userTrackingMode == .Follow) {
+            mapView.setUserTrackingMode(.None, animated: true)
+            userTrackingButton.setImage(UIImage(named: "location_button_disabled"), forState: .Normal)
+            userTrackingButton.setImage(UIImage(named: "location_button_enabled"), forState: .Highlighted)
+        } else {
+            mapView.setUserTrackingMode(.Follow, animated: true)
+            userTrackingButton.setImage(UIImage(named: "location_button_enabled"), forState: .Normal)
+            userTrackingButton.setImage(UIImage(named: "location_butto_disabledn"), forState: .Highlighted)
+        }
+    }
+    
     // MARK: - Location Manager Delegate
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -221,6 +234,17 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             return nil
         } else {
             return nil
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, didChangeUserTrackingMode mode: MKUserTrackingMode, animated: Bool) {
+        switch(mode) {
+        case .Follow, .FollowWithHeading:
+            userTrackingButton.setImage(UIImage(named: "location_button_enabled"), forState: .Normal)
+            userTrackingButton.setImage(UIImage(named: "location_butto_disabledn"), forState: .Highlighted)
+        case .None:
+            userTrackingButton.setImage(UIImage(named: "location_button_disabled"), forState: .Normal)
+            userTrackingButton.setImage(UIImage(named: "location_button_enabled"), forState: .Highlighted)
         }
     }
     

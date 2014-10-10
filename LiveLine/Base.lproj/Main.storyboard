@@ -36,6 +36,9 @@
                                 </state>
                                 <state key="selected" image="location_button_enabled"/>
                                 <state key="highlighted" image="location_button_enabled"/>
+                                <connections>
+                                    <action selector="trackUser:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="W3n-kj-5ng"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recording_indicator" translatesAutoresizingMaskIntoConstraints="NO" id="6g6-vB-ZbX">
                                 <rect key="frame" x="489" y="8" width="95" height="44"/>
@@ -88,6 +91,7 @@
                     <connections>
                         <outlet property="mapView" destination="sTy-gb-ChH" id="evK-uM-hv4"/>
                         <outlet property="recordingIndicator" destination="6g6-vB-ZbX" id="9uZ-bm-mqH"/>
+                        <outlet property="userTrackingButton" destination="Pcn-XI-MQR" id="aff-9T-2dF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
