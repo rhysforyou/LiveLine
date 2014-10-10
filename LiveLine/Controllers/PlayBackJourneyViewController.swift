@@ -9,10 +9,22 @@
 import UIKit
 import MapKit
 import CoreData
+import CoreLocation
 
 class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var journey: Journey? = nil
+    var journeyPolyline: MKPolyline? = nil
+    var photoMarkers: [MKPointAnnotation] = []
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        addJourneyPathToMap()
+        addPhotoMarkersToMap()
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "embedPhotos") {
@@ -25,6 +37,22 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
                     pageController.setViewControllers([startingController], direction: .Forward, animated: false, completion: nil)
                 }
             }
+        }
+    }
+    
+    func addJourneyPathToMap() {
+        let locationCoordinates: [CLLocationCoordinate2D] = journey?.coordinatesArray.map() { $0.locationCoordinate2D } ?? []
+        journeyPolyline = MKPolyline(coordinates: UnsafeMutablePointer<CLLocationCoordinate2D>(locationCoordinates), count: locationCoordinates.count)
+        mapView.addOverlay(journeyPolyline)
+    }
+    
+    func addPhotoMarkersToMap() {
+        let photoLocations: [CLLocationCoordinate2D] = journey?.photosArray.map() { $0.location.locationCoordinate2D } ?? []
+        photoMarkers = photoLocations.map() {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = $0
+            self.mapView.addAnnotation(annotation)
+            return annotation
         }
     }
 
@@ -63,5 +91,30 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
         }
         
         return viewControllerForIndex(index + 1)
+    }
+    
+    // MARK: - Map View Delegate
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.strokeColor = UIColor.liveLineRedColor()
+            renderer.lineWidth = 3.0
+            return renderer
+        } else {
+            return nil
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if let point = annotation as? MKPointAnnotation {
+            let annotationView = MKAnnotationView(annotation: point, reuseIdentifier: "PhotoPin")
+            annotationView.image = UIImage(named: "photo_pin")
+            return annotationView
+        } else if let userLocation = annotation as? MKUserLocation {
+            return nil
+        } else {
+            return nil
+        }
     }
 }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gKZ-Qg-VWB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -47,14 +48,26 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6g6-vB-ZbX" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="9kc-az-yFM"/>
-                            <constraint firstItem="sTy-gb-ChH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="AH8-XS-jkq"/>
+                            <constraint firstItem="sTy-gb-ChH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="AH8-XS-jkq"/>
                             <constraint firstItem="Pcn-XI-MQR" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="I53-3S-pqj"/>
+                            <constraint firstAttribute="trailing" secondItem="sTy-gb-ChH" secondAttribute="trailing" id="OJb-dD-OWS"/>
                             <constraint firstItem="sTy-gb-ChH" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="bottomMargin" id="R3X-cu-eYw"/>
+                            <constraint firstItem="sTy-gb-ChH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="RU2-jQ-cSa"/>
                             <constraint firstItem="Pcn-XI-MQR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="VfX-KK-J3E"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="sTy-gb-ChH" secondAttribute="bottom" id="Wsu-g1-5GB"/>
                             <constraint firstItem="6g6-vB-ZbX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="ZKY-ng-n5O"/>
                             <constraint firstItem="sTy-gb-ChH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="bVQ-0L-CU0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sTy-gb-ChH" secondAttribute="trailing" constant="-16" id="qxE-bZ-Zj2"/>
+                            <constraint firstItem="sTy-gb-ChH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="top" id="epZ-tB-2g3"/>
+                            <constraint firstItem="sTy-gb-ChH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wzc-p3-Y8b"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AH8-XS-jkq"/>
+                                <exclude reference="R3X-cu-eYw"/>
+                                <exclude reference="RU2-jQ-cSa"/>
+                                <exclude reference="bVQ-0L-CU0"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems>
                         <barButtonItem image="settings_icon" id="Cc7-FF-N3c"/>
@@ -122,18 +135,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7aQ-eg-AtP">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="2bw-mD-wWe"/>
-                                </constraints>
-                            </mapView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Foi-JM-lLi">
-                                <rect key="frame" x="0.0" y="250" width="600" height="242"/>
+                                <rect key="frame" x="0.0" y="200" width="600" height="292"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Foi-JM-lLi" secondAttribute="height" multiplier="1:1" priority="750" id="fu9-91-BDb"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="i6M-95-Fid" kind="embed" identifier="embedPhotos" id="P5q-Kq-cCB"/>
                                 </connections>
                             </containerView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7aQ-eg-AtP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="2bw-mD-wWe"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="6y6-hg-juU" id="wko-pc-bp5"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -147,6 +166,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="mapView" destination="7aQ-eg-AtP" id="gKu-Dg-nmj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQo-eY-kYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,7 +177,7 @@
         <!--Photos-->
         <scene sceneID="K6E-ym-YQa">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Photos" transitionStyle="scroll" pageSpacing="8" navigationOrientation="horizontal" spineLocation="none" id="i6M-95-Fid" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Photos" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="i6M-95-Fid" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ycr-ga-ptU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3592" y="341"/>
@@ -176,7 +198,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6Lb-C2-fw3" firstAttribute="top" secondItem="dlN-rw-jj8" secondAttribute="bottom" id="99J-g6-0BU"/>
                             <constraint firstItem="dlN-rw-jj8" firstAttribute="leading" secondItem="8hb-Il-MGf" secondAttribute="leading" id="GiH-4t-bio"/>

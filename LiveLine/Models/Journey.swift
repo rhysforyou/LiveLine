@@ -24,6 +24,12 @@ class Journey: NSManagedObject {
         }
     }
     
+    var photosArray: [Photo] {
+        get {
+            return photos.array as [Photo]
+        }
+    }
+    
     func sumDistances() {
         let locations = coordinatesArray.map() { CLLocation(latitude: $0.latitude, longitude: $0.longitude) }
         var lastLocation = locations.last
