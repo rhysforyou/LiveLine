@@ -31,6 +31,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         recordingIndicator.hidden = !recording
     }
     
@@ -161,8 +162,9 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         
         let cameraUI = UIImagePickerController()
         cameraUI.sourceType = .Camera
+        cameraUI.allowsEditing = true
         cameraUI.delegate = self
-        self.presentViewController(cameraUI, animated: true, completion: nil)
+        presentViewController(cameraUI, animated: true, completion: nil)
     }
     
     // MARK: - Location Manager Delegate
@@ -220,10 +222,24 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             photo.journey = activeJourney!
             photo.location = activeJourney!.coordinates.lastObject as Coordinate
             
-            didAddPhoto(photo)
+            let captionAlert = UIAlertController(title: "Photo Caption", message: "Add a caption to the photo", preferredStyle: .Alert)
+            captionAlert.addTextFieldWithConfigurationHandler({ (textField: UITextField!) -> Void in
+                textField.placeholder = "Caption"
+                textField.autocapitalizationType = .Sentences
+            })
+            captionAlert.addAction(UIAlertAction(title: "Skip", style: .Cancel, handler: nil))
+            captionAlert.addAction(UIAlertAction(title: "Add Caption", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+                if let captionField = captionAlert.textFields?.first? as? UITextField {
+                    photo.caption = captionField.text
+                }
+            }))
+            
+            picker.dismissViewControllerAnimated(true) { () -> Void in
+                self.presentViewController(captionAlert, animated: true, completion: nil)
+                self.didAddPhoto(photo)
+            }
+            
         }
-        
-        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Utility

@@ -12,7 +12,7 @@ import UIKit
 
 class Photo: NSManagedObject {
 
-    @NSManaged var caption: String
+    @NSManaged var caption: String?
     @NSManaged var imageData: NSData
     @NSManaged var timestamp: NSDate
     @NSManaged var location: Coordinate
