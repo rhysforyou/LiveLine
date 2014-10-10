@@ -26,9 +26,11 @@ class SlideshowViewController: UIViewController, KASlideShowDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         slideshowView.images = NSMutableArray(array: photos.map() {
             $0.image
         })
+
         self.navigationController?.setToolbarHidden(false, animated: animated)
         self.navigationController?.toolbar.barStyle = .BlackTranslucent
         self.navigationController?.toolbar.barTintColor = nil
@@ -38,12 +40,6 @@ class SlideshowViewController: UIViewController, KASlideShowDelegate {
             self.navigationController?.navigationBar.barTintColor = nil
             return
         }, completion: nil)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        startSlideshow(self)
     }
    
     override func viewWillDisappear(animated: Bool) {
