@@ -98,17 +98,80 @@
         <scene sceneID="SdW-g7-b60">
             <objects>
                 <tableViewController title="History" hidesBottomBarWhenPushed="YES" id="Njo-Yg-N6o" customClass="PastJourneysViewController" customModule="LiveLine" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BbI-ho-pKp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="BbI-ho-pKp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="MJS-pg-Vhz">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="91" id="MJS-pg-Vhz" customClass="JourneyCell" customModule="LiveLine" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MJS-pg-Vhz" id="5et-O4-ThD">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxl-gD-Qkq" customClass="BezierView" customModule="LiveLine" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="74.5" height="74.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="gxl-gD-Qkq" secondAttribute="height" multiplier="1:1" id="onq-A3-YRy"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhA-A1-sdD">
+                                            <rect key="frame" x="102" y="19" width="489.5" height="53"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Walk" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tft-3q-g1U">
+                                                    <rect key="frame" x="0.0" y="0.0" width="489.5" height="28.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10/10/2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agO-pR-KEW">
+                                                    <rect key="frame" x="0.0" y="36" width="74" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.2km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kp5-m0-XYr">
+                                                    <rect key="frame" x="441" y="36" width="40" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="Tft-3q-g1U" firstAttribute="leading" secondItem="OhA-A1-sdD" secondAttribute="leading" id="0el-uz-6Yd"/>
+                                                <constraint firstItem="Tft-3q-g1U" firstAttribute="top" secondItem="OhA-A1-sdD" secondAttribute="top" id="2NT-6w-Lkk"/>
+                                                <constraint firstAttribute="trailing" secondItem="kp5-m0-XYr" secondAttribute="trailing" constant="8" id="A39-tI-Ofz"/>
+                                                <constraint firstItem="agO-pR-KEW" firstAttribute="top" secondItem="Tft-3q-g1U" secondAttribute="bottom" constant="8" id="Jdu-wB-eeB"/>
+                                                <constraint firstAttribute="bottom" secondItem="kp5-m0-XYr" secondAttribute="bottom" id="j4K-h8-cTN"/>
+                                                <constraint firstItem="agO-pR-KEW" firstAttribute="leading" secondItem="OhA-A1-sdD" secondAttribute="leading" id="kHy-cn-6kz"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tft-3q-g1U" secondAttribute="trailing" id="kfc-tR-UOO"/>
+                                                <constraint firstAttribute="bottom" secondItem="agO-pR-KEW" secondAttribute="bottom" id="nRx-Bv-hSG"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gxl-gD-Qkq" firstAttribute="leading" secondItem="5et-O4-ThD" secondAttribute="leadingMargin" id="25Z-Jf-NhM"/>
+                                        <constraint firstItem="OhA-A1-sdD" firstAttribute="top" secondItem="gxl-gD-Qkq" secondAttribute="top" constant="-6" id="7ci-Ul-cBi"/>
+                                        <constraint firstItem="OhA-A1-sdD" firstAttribute="bottom" secondItem="gxl-gD-Qkq" secondAttribute="bottom" constant="7.5" id="L57-bU-5Of"/>
+                                        <constraint firstItem="OhA-A1-sdD" firstAttribute="centerY" secondItem="gxl-gD-Qkq" secondAttribute="centerY" id="Qu0-yw-tPu"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="gxl-gD-Qkq" secondAttribute="bottom" id="Sde-CQ-Fk1"/>
+                                        <constraint firstItem="gxl-gD-Qkq" firstAttribute="top" secondItem="5et-O4-ThD" secondAttribute="topMargin" id="h6b-Vm-abt"/>
+                                        <constraint firstItem="OhA-A1-sdD" firstAttribute="leading" secondItem="gxl-gD-Qkq" secondAttribute="trailing" constant="20" id="hzC-vh-NJC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="OhA-A1-sdD" secondAttribute="trailing" id="mJ6-RN-pm7"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="7ci-Ul-cBi"/>
+                                            <exclude reference="L57-bU-5Of"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="bezierView" destination="gxl-gD-Qkq" id="Rtb-Og-bmH"/>
+                                    <outlet property="dateLabel" destination="agO-pR-KEW" id="agS-9q-Agw"/>
+                                    <outlet property="distanceLabel" destination="kp5-m0-XYr" id="z1Y-8f-RYJ"/>
+                                    <outlet property="titleLabel" destination="Tft-3q-g1U" id="QAd-Ik-goR"/>
                                     <segue destination="6y6-hg-juU" kind="show" identifier="showJourneyDetails" id="LNg-aB-ejq"/>
                                 </connections>
                             </tableViewCell>

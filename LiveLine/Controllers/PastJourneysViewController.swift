@@ -13,12 +13,17 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
     
     var managedObjectContext: NSManagedObjectContext? = nil
     var fetchedResultsController: NSFetchedResultsController? = nil
+    var dateFormatter: NSDateFormatter? = nil
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        dateFormatter = NSDateFormatter()
+        dateFormatter?.dateStyle = .ShortStyle
+        dateFormatter?.timeStyle = .NoStyle
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -47,8 +52,55 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
     // MARK: - Table view data source
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        let journeyCell = cell as JourneyCell
         let journey = fetchedResultsController!.objectAtIndexPath(indexPath) as Journey
-        cell.textLabel?.text = "\(journey.distance)"
+        
+        journeyCell.titleLabel.text = journey.title
+        journeyCell.dateLabel.text = dateFormatter?.stringFromDate(journey.timestamp) ?? "No date"
+        journeyCell.distanceLabel.text = "\(journey.distance / 1000.0) km"
+        journeyCell.bezierView.path = scaledJourneyPath(journey)
+    }
+    
+    func scaledJourneyPath(journey: Journey) -> UIBezierPath {
+        var scalingBounds = (minX: 180.0, minY: 180.0, maxX: -180.0, maxY: -180.0)
+        
+        for coord in journey.coordinatesArray {
+            if (coord.latitude > scalingBounds.maxY) {
+                scalingBounds.maxY = coord.latitude
+            }
+            
+            if (coord.latitude < scalingBounds.minY) {
+                scalingBounds.minY = coord.latitude
+            }
+            if (coord.longitude > scalingBounds.maxX) {
+                scalingBounds.maxX = coord.longitude
+            }
+            
+            if (coord.longitude < scalingBounds.minX) {
+                scalingBounds.minX = coord.longitude
+            }
+        }
+        
+        let scalingFactor = max(scalingBounds.maxX - scalingBounds.minX, scalingBounds.maxY - scalingBounds.minY)
+        var path = UIBezierPath()
+        var offsets = (x: (scalingBounds.maxX - scalingBounds.minX - scalingFactor) / 2, y: (scalingBounds.maxY - scalingBounds.minY - scalingFactor) / 2)
+        var firstPoint = true
+        for coord in journey.coordinatesArray {
+            let point = CGPoint(
+                x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 60 + 10,
+                y: (((((coord.latitude - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 60 + 10
+            )
+            
+            if (firstPoint) {
+                path.moveToPoint(point)
+                firstPoint = false
+            } else {
+                path.addLineToPoint(point)
+            }
+        }
+        path.lineWidth = 2
+        
+        return path
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

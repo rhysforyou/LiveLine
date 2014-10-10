@@ -16,6 +16,8 @@
 		5701BF1D19E68B3B007CC1D3 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BF1C19E68B3B007CC1D3 /* Journey.swift */; };
 		5720136F19E77AE800F0F48D /* PlayBackJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720136E19E77AE800F0F48D /* PlayBackJourneyViewController.swift */; };
 		5720137119E786C900F0F48D /* PhotoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720137019E786C900F0F48D /* PhotoContentViewController.swift */; };
+		5784565719E7CC020081491B /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5784565619E7CC020081491B /* BezierView.swift */; };
+		5784565919E7CD810081491B /* JourneyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5784565819E7CD810081491B /* JourneyCell.swift */; };
 		578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578F82F419CDB1AD0053CD4F /* MapKit.framework */; };
 		57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E619CD3BD000CAA130 /* AppDelegate.swift */; };
 		57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E819CD3BD000CAA130 /* LiveLine.xcdatamodeld */; };
@@ -45,6 +47,8 @@
 		5701BF1C19E68B3B007CC1D3 /* Journey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		5720136E19E77AE800F0F48D /* PlayBackJourneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayBackJourneyViewController.swift; sourceTree = "<group>"; };
 		5720137019E786C900F0F48D /* PhotoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContentViewController.swift; sourceTree = "<group>"; };
+		5784565619E7CC020081491B /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
+		5784565819E7CD810081491B /* JourneyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyCell.swift; sourceTree = "<group>"; };
 		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57D638E119CD3BD000CAA130 /* LiveLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D638E519CD3BD000CAA130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +110,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5784565519E7CBD50081491B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5784565619E7CC020081491B /* BezierView.swift */,
+				5784565819E7CD810081491B /* JourneyCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		57D638D819CD3BD000CAA130 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +141,7 @@
 		57D638E319CD3BD000CAA130 /* LiveLine */ = {
 			isa = PBXGroup;
 			children = (
+				5784565519E7CBD50081491B /* Views */,
 				5701BF1919E68250007CC1D3 /* Extensions */,
 				5701BEDB19E504A6007CC1D3 /* Models */,
 				5701BEBE19E4EF05007CC1D3 /* Controllers */,
@@ -270,7 +284,9 @@
 			files = (
 				5701BEE119E504BC007CC1D3 /* Coordinate.swift in Sources */,
 				5720136F19E77AE800F0F48D /* PlayBackJourneyViewController.swift in Sources */,
+				5784565719E7CC020081491B /* BezierView.swift in Sources */,
 				5701BF1D19E68B3B007CC1D3 /* Journey.swift in Sources */,
+				5784565919E7CD810081491B /* JourneyCell.swift in Sources */,
 				57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */,
 				5701BEC019E4EF52007CC1D3 /* PastJourneysViewController.swift in Sources */,
 				5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */,
