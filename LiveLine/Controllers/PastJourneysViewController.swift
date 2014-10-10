@@ -28,7 +28,6 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillDisappear(animated)
     }
     

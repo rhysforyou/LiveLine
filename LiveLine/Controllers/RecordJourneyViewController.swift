@@ -31,6 +31,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         recordingIndicator.hidden = !recording
     }
     
@@ -161,6 +162,7 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
         
         let cameraUI = UIImagePickerController()
         cameraUI.sourceType = .Camera
+        cameraUI.allowsEditing = true
         cameraUI.delegate = self
         self.presentViewController(cameraUI, animated: true, completion: nil)
     }
