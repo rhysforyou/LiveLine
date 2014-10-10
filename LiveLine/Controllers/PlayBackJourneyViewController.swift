@@ -114,7 +114,7 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     }
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
-        if (finished && nextPage != nil) {
+        if (completed && nextPage != nil) {
             mapView.setCenterCoordinate(photoMarkers[nextPage!].coordinate, animated: true)
             
             if let newMarker: MKAnnotationView = mapView.viewForAnnotation(photoMarkers[nextPage!]) {
