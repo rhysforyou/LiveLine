@@ -88,10 +88,10 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         var offsets = (x: (scalingBounds.maxX - scalingBounds.minX - scalingFactor) / 2, y: (scalingBounds.maxY - scalingBounds.minY - scalingFactor) / 2)
         var firstPoint = true
         for coord in journey.coordinatesArray {
-            let point = CGPoint(x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 60 + 10
-                ,
-                y: (coord.latitude - scalingBounds.minY -
-                    offsets.y) / scalingFactor * 60 + 10)
+            let point = CGPoint(
+                x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 60 + 10,
+                y: (((((coord.latitude - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 60 + 10
+            )
             
             println("Adding point x: \(point.x) y: \(point.y)")
             
@@ -102,7 +102,7 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
                 path.addLineToPoint(point)
             }
         }
-        path.lineWidth = 3
+        path.lineWidth = 2
         
         return path
     }

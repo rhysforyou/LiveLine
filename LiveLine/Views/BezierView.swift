@@ -14,7 +14,7 @@ class BezierView: UIView {
 
     override func drawRect(rect: CGRect)
     {
-        UIColor.blackColor().setStroke()
+        UIColor.liveLineRedColor().setStroke()
         path?.stroke()
     }
 
