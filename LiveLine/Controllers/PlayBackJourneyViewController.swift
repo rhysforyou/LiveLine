@@ -18,6 +18,7 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     var photoMarkers: [MKPointAnnotation] = []
     
     @IBOutlet weak var mapView: MKMapView!
+    weak var pageController: UIPageViewController? = nil
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,6 +33,7 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
                 // TODO: Figure out why I can't do this in the storyboard
                 pageController.delegate = self
                 pageController.dataSource = self
+                self.pageController = pageController
                 
                 if let startingController = viewControllerForIndex(0) {
                     pageController.setViewControllers([startingController], direction: .Forward, animated: false, completion: nil)
@@ -69,6 +71,12 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
         photoViewController?.pageIndex = index
         
         return photoViewController
+    }
+    
+    func scrollToPageAtIndex(index: Int) {
+        if let viewController = viewControllerForIndex(index) {
+            pageController?.setViewControllers([viewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        }
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -111,10 +119,15 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
             let annotationView = MKAnnotationView(annotation: point, reuseIdentifier: "PhotoPin")
             annotationView.image = UIImage(named: "photo_pin")
             return annotationView
-        } else if let userLocation = annotation as? MKUserLocation {
-            return nil
         } else {
             return nil
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        let photoMarker = view.annotation as MKPointAnnotation
+        if let index = find(photoMarkers, photoMarker) {
+            scrollToPageAtIndex(index)
         }
     }
 }
