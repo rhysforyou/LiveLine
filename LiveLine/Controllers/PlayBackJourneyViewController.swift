@@ -13,7 +13,6 @@ import CoreData
 class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var journey: Journey? = nil
-    var photoIndex: Int = 0
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "embedPhotos") {
@@ -22,12 +21,9 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
                 pageController.delegate = self
                 pageController.dataSource = self
                 
-                
-                var controllers: [AnyObject] = []
                 if let startingController = viewControllerForIndex(0) {
-                    controllers.append(startingController)
+                    pageController.setViewControllers([startingController], direction: .Forward, animated: false, completion: nil)
                 }
-                pageController.setViewControllers(controllers, direction: .Forward, animated: false, completion: nil)
             }
         }
     }
@@ -35,27 +31,37 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     // MARK: - Page View Data Source
     
     func viewControllerForIndex(index: Int) -> UIViewController? {
-        let viewController: UIViewController? = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoViewController") as UIViewController?
-        return viewController
+        if (index >= journey?.photos.count) {
+            return nil
+        }
+        
+        let photoViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoViewController") as PhotoContentViewController?
+        
+        photoViewController?.photo = journey?.photos[index] as? Photo
+        photoViewController?.pageIndex = index
+        
+        return photoViewController
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        let index = photoIndex
-        photoIndex--
-        return viewControllerForIndex(index)
+        let photoViewController = viewController as PhotoContentViewController
+        let index = photoViewController.pageIndex
+        
+        if (index == NSNotFound || index <= 0) {
+            return nil
+        }
+        
+        return viewControllerForIndex(index - 1)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        let index = photoIndex
-        photoIndex++
-        return viewControllerForIndex(index)
-    }
-    
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return journey?.photos.count ?? 5
-    }
-
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return photoIndex
+        let photoViewController = viewController as PhotoContentViewController
+        let index = photoViewController.pageIndex
+        
+        if (index == NSNotFound || index + 1 >= journey?.photos.count) {
+            return nil
+        }
+        
+        return viewControllerForIndex(index + 1)
     }
 }

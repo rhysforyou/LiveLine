@@ -35,6 +35,15 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         return .LightContent
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "showJourneyDetails") {
+            if let playBackController = segue.destinationViewController as? PlayBackJourneyViewController {
+                let selectedIndexPath = self.tableView.indexPathForSelectedRow()
+                playBackController.journey = self.fetchedResultsController?.objectAtIndexPath(selectedIndexPath!) as? Journey
+            }
+        }
+    }
+    
     // MARK: - Table view data source
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {

@@ -160,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="3592" y="341"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo Content View Controller-->
         <scene sceneID="TrM-eX-PAN">
             <objects>
-                <viewController storyboardIdentifier="PhotoViewController" id="I2y-D0-uf8" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" id="I2y-D0-uf8" customClass="PhotoContentViewController" customModule="LiveLine" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="36l-Vl-ta5"/>
                         <viewControllerLayoutGuide type="bottom" id="6Lb-C2-fw3"/>
@@ -184,6 +184,9 @@
                             <constraint firstAttribute="trailing" secondItem="dlN-rw-jj8" secondAttribute="trailing" id="rR5-Ue-8kC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="dlN-rw-jj8" id="7vD-kU-6h7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nr-lO-nju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
