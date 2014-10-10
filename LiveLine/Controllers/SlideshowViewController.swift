@@ -23,12 +23,49 @@ class SlideshowViewController: UIViewController, KASlideShowDelegate {
         slideshowView.imagesContentMode = .ScaleAspectFit
         slideshowView.backgroundColor = UIColor.blackColor()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         slideshowView.images = NSMutableArray(array: photos.map() {
             $0.image
         })
+        self.navigationController?.setToolbarHidden(false, animated: animated)
+        self.navigationController?.toolbar.barStyle = .BlackTranslucent
+        self.navigationController?.toolbar.barTintColor = nil
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
+        transitionCoordinator()?.animateAlongsideTransition({ context in
+            self.navigationController?.navigationBar.barTintColor = nil
+            return
+        }, completion: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        startSlideshow(self)
+    }
+   
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        slideshowView.stop()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    @IBAction func stopSlideshow(sender: AnyObject) {
+        slideshowView.stop()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
+    @IBAction func startSlideshow(sender: AnyObject) {
         slideshowView.start()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setToolbarHidden(true, animated: true)
     }
 }

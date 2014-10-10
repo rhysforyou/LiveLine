@@ -32,6 +32,13 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        transitionCoordinator()?.animateAlongsideTransition({ context in
+            self.navigationController?.navigationBar.barTintColor = UIColor.liveLineRedColor()
+            return
+        }, completion: nil)
+        
+        self.navigationController?.setToolbarHidden(true, animated: animated)
+        
         addJourneyPathToMap()
         addPhotoMarkersToMap()
     }

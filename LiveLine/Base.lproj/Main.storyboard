@@ -251,12 +251,29 @@
                         <viewControllerLayoutGuide type="bottom" id="P4c-Bt-1oe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lce-hL-yE0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jr6-ai-GrE" customClass="KASlideShow">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMd-1t-LZw">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopSlideshow:" destination="xAG-OL-8UT" eventType="touchUpInside" id="0Md-kd-oIR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="tMd-1t-LZw" secondAttribute="bottom" id="H2f-3m-4Ru"/>
+                                    <constraint firstAttribute="trailing" secondItem="tMd-1t-LZw" secondAttribute="trailing" id="PHD-j1-kqX"/>
+                                    <constraint firstItem="tMd-1t-LZw" firstAttribute="top" secondItem="Jr6-ai-GrE" secondAttribute="top" id="eAf-0I-taF"/>
+                                    <constraint firstItem="tMd-1t-LZw" firstAttribute="leading" secondItem="Jr6-ai-GrE" secondAttribute="leading" id="huq-ZU-5tc"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="xAG-OL-8UT" id="ZkL-OK-ixn"/>
                                 </connections>
@@ -274,11 +291,12 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Al7-Lr-Id3"/>
                         <barButtonItem systemItem="play" id="KpU-tF-cOl">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="startSlideshow:" destination="xAG-OL-8UT" id="quV-dN-ZNA"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="nL5-Dj-Ste"/>
                     </toolbarItems>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <outlet property="slideshowView" destination="Jr6-ai-GrE" id="W5f-IN-fP5"/>
                     </connections>
