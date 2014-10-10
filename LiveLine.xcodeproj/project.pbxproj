@@ -18,6 +18,8 @@
 		5720137119E786C900F0F48D /* PhotoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720137019E786C900F0F48D /* PhotoContentViewController.swift */; };
 		5784565719E7CC020081491B /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5784565619E7CC020081491B /* BezierView.swift */; };
 		5784565919E7CD810081491B /* JourneyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5784565819E7CD810081491B /* JourneyCell.swift */; };
+		5784566819E7E0580081491B /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5784566719E7E0580081491B /* KASlideShow.m */; };
+		5784566E19E7E1970081491B /* SlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5784566D19E7E1970081491B /* SlideshowViewController.swift */; };
 		578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578F82F419CDB1AD0053CD4F /* MapKit.framework */; };
 		57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E619CD3BD000CAA130 /* AppDelegate.swift */; };
 		57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E819CD3BD000CAA130 /* LiveLine.xcdatamodeld */; };
@@ -49,6 +51,10 @@
 		5720137019E786C900F0F48D /* PhotoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContentViewController.swift; sourceTree = "<group>"; };
 		5784565619E7CC020081491B /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		5784565819E7CD810081491B /* JourneyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyCell.swift; sourceTree = "<group>"; };
+		5784566619E7E0580081491B /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KASlideShow.h; path = "../../../../../../Downloads/kirualex-KASlideShow-ca548b7/KASlideShow/KASlideShow.h"; sourceTree = "<group>"; };
+		5784566719E7E0580081491B /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KASlideShow.m; path = "../../../../../../Downloads/kirualex-KASlideShow-ca548b7/KASlideShow/KASlideShow.m"; sourceTree = "<group>"; };
+		5784566919E7E09A0081491B /* LiveLine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveLine-Bridging-Header.h"; sourceTree = "<group>"; };
+		5784566D19E7E1970081491B /* SlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideshowViewController.swift; sourceTree = "<group>"; };
 		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		57D638E119CD3BD000CAA130 /* LiveLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D638E519CD3BD000CAA130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +94,7 @@
 				5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */,
 				5720136E19E77AE800F0F48D /* PlayBackJourneyViewController.swift */,
 				5720137019E786C900F0F48D /* PhotoContentViewController.swift */,
+				5784566D19E7E1970081491B /* SlideshowViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,6 +126,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5784565A19E7DEED0081491B /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				5784565B19E7DF310081491B /* KASlideShow */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		5784565B19E7DF310081491B /* KASlideShow */ = {
+			isa = PBXGroup;
+			children = (
+				5784566619E7E0580081491B /* KASlideShow.h */,
+				5784566719E7E0580081491B /* KASlideShow.m */,
+			);
+			path = KASlideShow;
+			sourceTree = "<group>";
+		};
 		57D638D819CD3BD000CAA130 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +165,8 @@
 		57D638E319CD3BD000CAA130 /* LiveLine */ = {
 			isa = PBXGroup;
 			children = (
+				5784566919E7E09A0081491B /* LiveLine-Bridging-Header.h */,
+				5784565A19E7DEED0081491B /* Vendor */,
 				5784565519E7CBD50081491B /* Views */,
 				5701BF1919E68250007CC1D3 /* Extensions */,
 				5701BEDB19E504A6007CC1D3 /* Models */,
@@ -292,6 +318,8 @@
 				5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */,
 				5720137119E786C900F0F48D /* PhotoContentViewController.swift in Sources */,
 				57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */,
+				5784566819E7E0580081491B /* KASlideShow.m in Sources */,
+				5784566E19E7E1970081491B /* SlideshowViewController.swift in Sources */,
 				5701BEDD19E504BC007CC1D3 /* Photo.swift in Sources */,
 				5701BF1B19E68269007CC1D3 /* UIColorExtensions.swift in Sources */,
 			);
@@ -420,6 +448,7 @@
 				INFOPLIST_FILE = LiveLine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LiveLine//LiveLine-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -432,6 +461,7 @@
 				INFOPLIST_FILE = LiveLine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LiveLine//LiveLine-Bridging-Header.h";
 			};
 			name = Release;
 		};

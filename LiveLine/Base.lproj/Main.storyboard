@@ -102,6 +102,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="102" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="91" id="MJS-pg-Vhz" customClass="JourneyCell" customModule="LiveLine" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -229,13 +230,62 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="aMb-5r-xIO"/>
+                    </toolbarItems>
                     <connections>
                         <outlet property="mapView" destination="7aQ-eg-AtP" id="gKu-Dg-nmj"/>
+                        <segue destination="xAG-OL-8UT" kind="show" identifier="showSlideshow" id="EnM-zD-Vrb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQo-eY-kYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2754" y="341"/>
+        </scene>
+        <!--Slideshow View Controller-->
+        <scene sceneID="Ep0-K9-QjF">
+            <objects>
+                <viewController id="xAG-OL-8UT" customClass="SlideshowViewController" customModule="LiveLine" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uai-I1-68W"/>
+                        <viewControllerLayoutGuide type="bottom" id="P4c-Bt-1oe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lce-hL-yE0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jr6-ai-GrE" customClass="KASlideShow">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xAG-OL-8UT" id="ZkL-OK-ixn"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jr6-ai-GrE" secondAttribute="trailing" id="LYJ-HR-XN1"/>
+                            <constraint firstAttribute="bottom" secondItem="Jr6-ai-GrE" secondAttribute="bottom" id="M3S-D4-7Oq"/>
+                            <constraint firstItem="Jr6-ai-GrE" firstAttribute="top" secondItem="lce-hL-yE0" secondAttribute="top" id="khg-u2-QEn"/>
+                            <constraint firstItem="Jr6-ai-GrE" firstAttribute="leading" secondItem="lce-hL-yE0" secondAttribute="leading" id="yzB-Qu-sxK"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Al7-Lr-Id3"/>
+                        <barButtonItem systemItem="play" id="KpU-tF-cOl">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="nL5-Dj-Ste"/>
+                    </toolbarItems>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <connections>
+                        <outlet property="slideshowView" destination="Jr6-ai-GrE" id="W5f-IN-fP5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CC0-8e-74c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3548" y="341"/>
         </scene>
         <!--Photos-->
         <scene sceneID="K6E-ym-YQa">
@@ -243,7 +293,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" title="Photos" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="i6M-95-Fid" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ycr-ga-ptU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3592" y="341"/>
+            <point key="canvasLocation" x="2754" y="1051"/>
         </scene>
         <!--Photo Content View Controller-->
         <scene sceneID="TrM-eX-PAN">
