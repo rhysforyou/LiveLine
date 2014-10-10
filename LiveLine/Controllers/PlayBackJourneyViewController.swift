@@ -18,6 +18,7 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     var photoMarkers: [MKPointAnnotation] = []
     var selectedMarker: MKAnnotationView? = nil
     var nextPage: Int? = nil
+    var hasAddedFirstMarker = false
     
     @IBOutlet weak var mapView: MKMapView!
     weak var pageController: UIPageViewController? = nil
@@ -144,7 +145,13 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let point = annotation as? MKPointAnnotation {
             let annotationView = MKAnnotationView(annotation: point, reuseIdentifier: "PhotoPin")
-            annotationView.image = UIImage(named: "photo_pin")
+            if (hasAddedFirstMarker) {
+                annotationView.image = UIImage(named: "photo_pin")
+            } else {
+                selectedMarker = annotationView
+                selectedMarker?.image = UIImage(named: "photo_pin_selected")
+                hasAddedFirstMarker = true
+            }
             return annotationView
         } else {
             return nil
