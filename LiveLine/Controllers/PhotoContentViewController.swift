@@ -12,13 +12,28 @@ class PhotoContentViewController: UIViewController {
     
     var photo: Photo? = nil
     var pageIndex: Int = 0
+    var timestampFormatter: NSDateFormatter? = nil
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        timestampFormatter = NSDateFormatter()
+        timestampFormatter?.dateStyle = .NoStyle
+        timestampFormatter?.timeStyle = .ShortStyle
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        imageView.image = photo?.image
+        if let thePhoto = self.photo {
+            imageView.image = thePhoto.image
+            captionLabel.text = thePhoto.caption ?? "(no caption)"
+            timestampLabel.text = timestampFormatter?.stringFromDate(thePhoto.timestamp) ?? "(no date)"
+        }
     }
 
 }

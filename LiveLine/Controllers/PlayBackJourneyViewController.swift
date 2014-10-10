@@ -16,6 +16,8 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     var journey: Journey? = nil
     var journeyPolyline: MKPolyline? = nil
     var photoMarkers: [MKPointAnnotation] = []
+    var selectedMarker: MKAnnotationView? = nil
+    var nextPage: Int? = nil
     
     @IBOutlet weak var mapView: MKMapView!
     weak var pageController: UIPageViewController? = nil
@@ -46,6 +48,9 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
         let locationCoordinates: [CLLocationCoordinate2D] = journey?.coordinatesArray.map() { $0.locationCoordinate2D } ?? []
         journeyPolyline = MKPolyline(coordinates: UnsafeMutablePointer<CLLocationCoordinate2D>(locationCoordinates), count: locationCoordinates.count)
         mapView.addOverlay(journeyPolyline)
+        
+        let boundingRect = mapView.mapRectThatFits(journeyPolyline!.boundingMapRect)
+        mapView.setVisibleMapRect(boundingRect, edgePadding: UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0), animated: true)
     }
     
     func addPhotoMarkersToMap() {
@@ -101,6 +106,28 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
         return viewControllerForIndex(index + 1)
     }
     
+    // MARK: - Page View Delegate
+    
+    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
+        let photoController = pendingViewControllers.first? as PhotoContentViewController?
+        nextPage = photoController?.pageIndex
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+        if (finished && nextPage != nil) {
+            mapView.setCenterCoordinate(photoMarkers[nextPage!].coordinate, animated: true)
+            
+            if let newMarker: MKAnnotationView = mapView.viewForAnnotation(photoMarkers[nextPage!]) {
+                if let oldMarker = selectedMarker {
+                    oldMarker.image = UIImage(named: "photo_pin")
+                }
+                
+                selectedMarker = newMarker
+                selectedMarker?.image = UIImage(named: "photo_pin_selected")
+            }
+        }
+    }
+    
     // MARK: - Map View Delegate
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
@@ -126,6 +153,16 @@ class PlayBackJourneyViewController: UIViewController, MKMapViewDelegate, UIPage
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         let photoMarker = view.annotation as MKPointAnnotation
+        
+        if let oldMarker = selectedMarker {
+            oldMarker.image = UIImage(named: "photo_pin")
+        }
+        
+        selectedMarker = view
+        selectedMarker?.image = UIImage(named: "photo_pin_selected")
+        
+        mapView.setCenterCoordinate(photoMarker.coordinate, animated: true)
+        
         if let index = find(photoMarkers, photoMarker) {
             scrollToPageAtIndex(index)
         }
