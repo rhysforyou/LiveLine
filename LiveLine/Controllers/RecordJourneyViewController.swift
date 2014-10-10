@@ -137,18 +137,31 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
             activeJourney?.sumDistances()
             println(activeJourney?.distance)
             
-            var error: NSError? = nil
-            if (managedObjectContext != nil && !managedObjectContext!.save(&error)) {
-                println("Error saving journey: \(error)")
-            } else {
-                activeJourney = nil
+            let titleInputAlert = UIAlertController(title: "Title", message: "Enter a title for the journey", preferredStyle: .Alert)
+            titleInputAlert.addTextFieldWithConfigurationHandler() {
+                $0.autocapitalizationType = .Sentences
+                $0.placeholder = "Title"
             }
+            titleInputAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+                if let titleTextField = titleInputAlert.textFields?.first as? UITextField {
+                    self.activeJourney?.title = titleTextField.text
+                }
+                
+                var error: NSError? = nil
+                if (self.managedObjectContext != nil && !self.managedObjectContext!.save(&error)) {
+                    println("Error saving journey: \(error)")
+                } else {
+                    self.activeJourney = nil
+                }
+                
+                self.toolbarItems = self.oldToolbarItems
+                self.navigationController?.toolbar.barTintColor = UIColor.liveLineWhiteColor()
+                self.navigationController?.toolbar.tintColor = UIColor.liveLineRedColor()
+                
+                self.recording = false
+            }))
             
-            self.toolbarItems = oldToolbarItems
-            self.navigationController?.toolbar.barTintColor = UIColor.liveLineWhiteColor()
-            self.navigationController?.toolbar.tintColor = UIColor.liveLineRedColor()
-            
-            recording = false
+            presentViewController(titleInputAlert, animated: true, completion: nil)
         }
         
         recordingIndicator.hidden = !recording
