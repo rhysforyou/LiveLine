@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gKZ-Qg-VWB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gKZ-Qg-VWB">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -106,7 +106,6 @@
         <!--Settings-->
         <scene sceneID="c9V-fW-pWe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4P7-fg-Wr4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ATd-H4-JX4" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V1F-Pp-qi4"/>
@@ -294,13 +293,14 @@ Cgo
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="kCs-Ig-d2E">
-                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" systemItem="done" id="WTA-T3-XcI">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="WTA-T3-XcI">
                             <connections>
                                 <segue destination="e1h-TW-4aP" kind="unwind" unwindAction="unwindFromAbout:" id="99U-zy-Tfb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4P7-fg-Wr4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2029" y="1065"/>
         </scene>
@@ -655,7 +655,6 @@ Cgo
         <!--Navigation Controller-->
         <scene sceneID="bNL-LL-vlS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9MK-7x-PXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e8E-ck-UEZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i6n-i7-rOx">
@@ -667,6 +666,7 @@ Cgo
                         <segue destination="ATd-H4-JX4" kind="relationship" relationship="rootViewController" id="9UD-yL-cas"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9MK-7x-PXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1247" y="1065"/>
         </scene>
