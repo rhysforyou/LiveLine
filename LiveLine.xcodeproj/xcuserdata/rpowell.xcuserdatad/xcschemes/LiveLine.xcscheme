@@ -44,7 +44,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../../../../Downloads/CSCI342 Ass2 - Sample GPX and Images/Uni-walk.gpx"
+         identifier = "../../Uni-walk.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

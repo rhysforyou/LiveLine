@@ -11,7 +11,6 @@
 		5701BEC219E4EF62007CC1D3 /* RecordJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */; };
 		5701BEDD19E504BC007CC1D3 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEDC19E504BC007CC1D3 /* Photo.swift */; };
 		5701BEE119E504BC007CC1D3 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BEE019E504BC007CC1D3 /* Coordinate.swift */; };
-		5701BEE319E54A9F007CC1D3 /* Uni-walk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5701BEE219E54A9F007CC1D3 /* Uni-walk.gpx */; };
 		5701BF1B19E68269007CC1D3 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BF1A19E68269007CC1D3 /* UIColorExtensions.swift */; };
 		5701BF1D19E68B3B007CC1D3 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701BF1C19E68B3B007CC1D3 /* Journey.swift */; };
 		5720136F19E77AE800F0F48D /* PlayBackJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720136E19E77AE800F0F48D /* PlayBackJourneyViewController.swift */; };
@@ -21,6 +20,7 @@
 		5784566819E7E0580081491B /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5784566719E7E0580081491B /* KASlideShow.m */; };
 		5784566E19E7E1970081491B /* SlideshowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5784566D19E7E1970081491B /* SlideshowViewController.swift */; };
 		578F82F519CDB1AD0053CD4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578F82F419CDB1AD0053CD4F /* MapKit.framework */; };
+		57BA12641A066E6800D302C8 /* Uni-walk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 57BA12631A066E6800D302C8 /* Uni-walk.gpx */; };
 		57D638E719CD3BD000CAA130 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E619CD3BD000CAA130 /* AppDelegate.swift */; };
 		57D638EA19CD3BD000CAA130 /* LiveLine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D638E819CD3BD000CAA130 /* LiveLine.xcdatamodeld */; };
 		57D638EF19CD3BD000CAA130 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57D638ED19CD3BD000CAA130 /* Main.storyboard */; };
@@ -44,7 +44,6 @@
 		5701BEC119E4EF62007CC1D3 /* RecordJourneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordJourneyViewController.swift; sourceTree = "<group>"; };
 		5701BEDC19E504BC007CC1D3 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		5701BEE019E504BC007CC1D3 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		5701BEE219E54A9F007CC1D3 /* Uni-walk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Uni-walk.gpx"; path = "../../../../Downloads/CSCI342 Ass2 - Sample GPX and Images/Uni-walk.gpx"; sourceTree = "<group>"; };
 		5701BF1A19E68269007CC1D3 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5701BF1C19E68B3B007CC1D3 /* Journey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
 		5720136E19E77AE800F0F48D /* PlayBackJourneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayBackJourneyViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		5784566919E7E09A0081491B /* LiveLine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveLine-Bridging-Header.h"; sourceTree = "<group>"; };
 		5784566D19E7E1970081491B /* SlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideshowViewController.swift; sourceTree = "<group>"; };
 		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		57BA12631A066E6800D302C8 /* Uni-walk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Uni-walk.gpx"; path = "../Uni-walk.gpx"; sourceTree = "<group>"; };
 		57D638E119CD3BD000CAA130 /* LiveLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D638E519CD3BD000CAA130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57D638E619CD3BD000CAA130 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +184,7 @@
 		57D638E419CD3BD000CAA130 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				57BA12631A066E6800D302C8 /* Uni-walk.gpx */,
 				57D638E519CD3BD000CAA130 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -201,7 +202,6 @@
 		57D638FD19CD3BD000CAA130 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5701BEE219E54A9F007CC1D3 /* Uni-walk.gpx */,
 				57D638FE19CD3BD000CAA130 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57D638EF19CD3BD000CAA130 /* Main.storyboard in Resources */,
-				5701BEE319E54A9F007CC1D3 /* Uni-walk.gpx in Resources */,
+				57BA12641A066E6800D302C8 /* Uni-walk.gpx in Resources */,
 				57D638F419CD3BD000CAA130 /* LaunchScreen.xib in Resources */,
 				57D638F119CD3BD000CAA130 /* Images.xcassets in Resources */,
 			);
