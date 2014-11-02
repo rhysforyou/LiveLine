@@ -51,8 +51,8 @@
 		5720137019E786C900F0F48D /* PhotoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContentViewController.swift; sourceTree = "<group>"; };
 		5784565619E7CC020081491B /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		5784565819E7CD810081491B /* JourneyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyCell.swift; sourceTree = "<group>"; };
-		5784566619E7E0580081491B /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KASlideShow.h; path = "../../../../../../Downloads/kirualex-KASlideShow-ca548b7/KASlideShow/KASlideShow.h"; sourceTree = "<group>"; };
-		5784566719E7E0580081491B /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KASlideShow.m; path = "../../../../../../Downloads/kirualex-KASlideShow-ca548b7/KASlideShow/KASlideShow.m"; sourceTree = "<group>"; };
+		5784566619E7E0580081491B /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
+		5784566719E7E0580081491B /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
 		5784566919E7E09A0081491B /* LiveLine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveLine-Bridging-Header.h"; sourceTree = "<group>"; };
 		5784566D19E7E1970081491B /* SlideshowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideshowViewController.swift; sourceTree = "<group>"; };
 		578F82F419CDB1AD0053CD4F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
