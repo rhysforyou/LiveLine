@@ -20,7 +20,7 @@ class Coordinate: NSManagedObject {
     
     var locationCoordinate2D: CLLocationCoordinate2D {
         get {
-            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            return CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
         }
     }
 }

@@ -18,7 +18,7 @@ class Photo: NSManagedObject {
     @NSManaged var location: Coordinate
     @NSManaged var journey: Journey
     
-    var image: UIImage {
+    var image: UIImage! {
         get {
             return UIImage(data: imageData)
         }

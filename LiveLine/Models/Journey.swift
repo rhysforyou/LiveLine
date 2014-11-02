@@ -31,7 +31,7 @@ class Journey: NSManagedObject {
     }
     
     func sumDistances() {
-        let locations = coordinatesArray.map() { CLLocation(latitude: $0.latitude, longitude: $0.longitude) }
+        let locations = coordinatesArray.map() { CLLocation(latitude: $0.latitude.doubleValue, longitude: $0.longitude.doubleValue) }
         var lastLocation = locations.last
         var distance = 0
         

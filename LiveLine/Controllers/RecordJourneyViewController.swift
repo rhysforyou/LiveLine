@@ -107,7 +107,10 @@ class RecordJourneyViewController: UIViewController, CLLocationManagerDelegate, 
     
     func didAddCoordinate(coordinate: Coordinate) {
         let coordinates = activeJourney?.coordinatesArray.map() { (coordinate: Coordinate) -> CLLocationCoordinate2D in
-            return CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            return CLLocationCoordinate2D(
+                latitude: coordinate.latitude.doubleValue,
+                longitude: coordinate.longitude.doubleValue
+            )
         }
         if let polylinePoints = coordinates {
             let oldPolyline = polyline

@@ -30,7 +30,7 @@ class SlideshowViewController: UIViewController, KASlideShowDelegate {
         super.viewWillAppear(animated)
 
         slideshowView.images = NSMutableArray(array: photos.map() {
-            $0.image
+            $0.image!
         })
 
         self.navigationController?.setToolbarHidden(false, animated: animated)

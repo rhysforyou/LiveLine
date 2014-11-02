@@ -57,7 +57,7 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         
         journeyCell.titleLabel.text = journey.title
         journeyCell.dateLabel.text = dateFormatter?.stringFromDate(journey.timestamp) ?? "No date"
-        journeyCell.distanceLabel.text = "\(journey.distance / 1000.0) km"
+        journeyCell.distanceLabel.text = "\(journey.distance.doubleValue / 1000.0) km"
         journeyCell.bezierView.path = scaledJourneyPath(journey)
     }
     
@@ -65,19 +65,19 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         var scalingBounds = (minX: 180.0, minY: 180.0, maxX: -180.0, maxY: -180.0)
         
         for coord in journey.coordinatesArray {
-            if (coord.latitude > scalingBounds.maxY) {
-                scalingBounds.maxY = coord.latitude
+            if (coord.latitude.doubleValue > scalingBounds.maxY) {
+                scalingBounds.maxY = coord.latitude.doubleValue
             }
             
-            if (coord.latitude < scalingBounds.minY) {
-                scalingBounds.minY = coord.latitude
+            if (coord.latitude.doubleValue < scalingBounds.minY) {
+                scalingBounds.minY = coord.latitude.doubleValue
             }
-            if (coord.longitude > scalingBounds.maxX) {
-                scalingBounds.maxX = coord.longitude
+            if (coord.longitude.doubleValue > scalingBounds.maxX) {
+                scalingBounds.maxX = coord.longitude.doubleValue
             }
             
-            if (coord.longitude < scalingBounds.minX) {
-                scalingBounds.minX = coord.longitude
+            if (coord.longitude.doubleValue < scalingBounds.minX) {
+                scalingBounds.minX = coord.longitude.doubleValue
             }
         }
         
@@ -87,8 +87,8 @@ class PastJourneysViewController: UITableViewController, NSFetchedResultsControl
         var firstPoint = true
         for coord in journey.coordinatesArray {
             let point = CGPoint(
-                x: (coord.longitude - scalingBounds.minX - offsets.x) / scalingFactor * 64 + 10,
-                y: (((((coord.latitude - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 64 + 10
+                x: (coord.longitude.doubleValue - scalingBounds.minX - offsets.x) / scalingFactor * 64 + 10,
+                y: (((((coord.latitude.doubleValue - scalingBounds.minY - offsets.y) / scalingFactor) - 0.5) * -1) + 0.5) * 64 + 10
             )
             
             if (firstPoint) {
